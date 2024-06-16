@@ -1,0 +1,208 @@
+[gd_scene load_steps=11 format=3 uid="uid://djuddcslie15s"]
+
+[ext_resource type="Texture2D" uid="uid://471mkup3uh42" path="res://background/Space Background.png" id="1_61ogj"]
+[ext_resource type="Texture2D" uid="uid://ddpfxtj6yvyvm" path="res://global/ship/transparent_2024-06-16T02-32-40.png" id="2_0ph4m"]
+[ext_resource type="FontFile" uid="uid://botysc6fqnujv" path="res://font/Early GameBoy.ttf" id="3_imyjf"]
+
+[sub_resource type="Animation" id="Animation_w8gto"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1w7kc"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5eafy"]
+resource_name = "fade_out"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_480sa"]
+_data = {
+"RESET": SubResource("Animation_w8gto"),
+"fade_in": SubResource("Animation_1w7kc"),
+"fade_out": SubResource("Animation_5eafy")
+}
+
+[sub_resource type="Animation" id="Animation_18fah"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShipFloat/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(650, 400)]
+}
+
+[sub_resource type="Animation" id="Animation_fhaij"]
+resource_name = "opening_animation"
+length = 8.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShipFloat/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(650, 400), Vector2(650, 420), Vector2(650, 400), Vector2(650, 420)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShipFloat/TextEdit:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShipFloat/RichTextLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ucro0"]
+_data = {
+"RESET": SubResource("Animation_18fah"),
+"opening_animation": SubResource("Animation_fhaij")
+}
+
+[node name="Game" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_61ogj")
+expand_mode = 2
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_480sa")
+}
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 0)
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ShipFloat" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ucro0")
+}
+autoplay = "opening_animation"
+
+[node name="Sprite2D" type="Sprite2D" parent="ShipFloat"]
+position = Vector2(650, 400)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_0ph4m")
+
+[node name="TextEdit" type="TextEdit" parent="ShipFloat"]
+offset_left = 2.00006
+offset_top = 521.0
+offset_right = 1278.0
+offset_bottom = 723.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_imyjf")
+theme_override_font_sizes/font_size = 24
+text = "Captain, we're approaching the destination.
+Initiating landing sequence."
+wrap_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ShipFloat"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_imyjf")
+text = "Next..."
