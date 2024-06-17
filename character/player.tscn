@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bla831wd3bx0q"]
+
+[ext_resource type="Texture2D" uid="uid://cdaim1pq1c0va" path="res://art/FreeAssets/robots/Infantryman/Idle.png" id="1_7kdd8"]
+[ext_resource type="Script" path="res://character/player.gd" id="1_76gbj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmp6p"]
+radius = 11.0
+height = 72.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_76gbj")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_7kdd8")
+offset = Vector2(0, -28)
+hframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_wmp6p")
