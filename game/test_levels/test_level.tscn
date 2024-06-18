@@ -579,27 +579,27 @@ texture = ExtResource("1_bha32")
 33:10/0 = 0
 33:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 33:10/0/physics_layer_0/angular_velocity = 0.0
-33:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 6.125, 8, -2.875, 8, 8, -8, 8)
+33:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, -2.875, 8, 8, -8, 8)
 34:10/0 = 0
 34:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 34:10/0/physics_layer_0/angular_velocity = 0.0
-34:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -3.875, 8, -8, 8, 8, -8, 8)
+34:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.875, 8, -8, 8, 8, -8, 8)
 36:10/0 = 0
 36:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 36:10/0/physics_layer_0/angular_velocity = 0.0
-36:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 6.125, 8, -0.375, 8, 8, -8, 8)
+36:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, 7.25, 8, -0.375, 8, 8, -8, 8)
 37:10/0 = 0
 37:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 37:10/0/physics_layer_0/angular_velocity = 0.0
-37:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(2.25, -8, -8, -1.5, -8, 8, 8, 8, 8, -8)
+37:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.75, -8, -8, -0.375, -8, 8, 8, 8, 8, -8)
 39:10/0 = 0
 39:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 39:10/0/physics_layer_0/angular_velocity = 0.0
-39:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -1, -8, 6.5, -8, 8, 8, 8)
+39:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -1, -8, 8, -8, 8, 8, 8)
 40:10/0 = 0
 40:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 40:10/0/physics_layer_0/angular_velocity = 0.0
-40:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.875, 2.25, -8, 8, -8, 8, 8, -8, 8)
+40:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0.75, 4.25, -8, 8, -8, 8, 8, -8, 8)
 55:10/0 = 0
 55:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 55:10/0/physics_layer_0/angular_velocity = 0.0
@@ -2835,6 +2835,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_3m75y")
 
 [node name="TestLevel" type="Node2D"]
+position = Vector2(151, 78)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_m7yhi")
@@ -2845,24 +2846,38 @@ layer_0/tile_data = PackedInt32Array(-262165, 1703936, 31, -196629, 1703936, 32,
 [node name="Background" type="ParallaxBackground" parent="."]
 
 [node name="Layer1" type="ParallaxLayer" parent="Background"]
+position = Vector2(151, 78)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Layer1"]
 texture = ExtResource("2_qxb45")
 
 [node name="Layer2" type="ParallaxLayer" parent="Background"]
+position = Vector2(151, 78)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Layer2"]
 texture = ExtResource("3_t0vyk")
 
 [node name="Layer3" type="ParallaxLayer" parent="Background"]
+position = Vector2(151, 78)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Layer3"]
 texture = ExtResource("4_b3hat")
 
 [node name="Layer4" type="ParallaxLayer" parent="Background"]
+position = Vector2(151, 78)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Layer4"]
 texture = ExtResource("5_ybhqv")
 
 [node name="Player" parent="." instance=ExtResource("6_wy1hn")]
-position = Vector2(122, 34)
+position = Vector2(126, -15)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(126, -15)
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
