@@ -2878,6 +2878,9 @@ texture = ExtResource("5_ybhqv")
 
 [node name="Player" parent="." instance=ExtResource("6_wy1hn")]
 position = Vector2(126, -15)
+walk_speed = null
+jump_velocity = null
+dash_speed = null
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")

@@ -9,6 +9,7 @@ extends CharacterBody2D
 
 var can_dash : bool = true
 var is_dashing : bool = false
+var is_sprinting : bool = false
 var animation_locked : bool = false
 var direction : Vector2 = Vector2.ZERO
 
@@ -29,7 +30,9 @@ func _physics_process(delta : float):
 func update_animation():
 	if not animation_locked:
 		# idle or runa
-		if direction.x:
+		if is_sprinting:
+			animated_sprite.play("sprint")
+		elif direction.x:
 			animated_sprite.play("walk")
 		else:
 			animated_sprite.play("idle")
@@ -40,6 +43,15 @@ func update_direction():
 		animated_sprite.flip_h = false
 	elif direction.x < 0:
 		animated_sprite.flip_h = true
+
+func was_back_pressed(direction : float):
+	# TODO: figure out this function
+	if (direction > 0):
+		return not animated_sprite.flip_h
+	elif (direction < 0 and ):
+		return animated_sprite.flip_h
+	
+	return false
 
 func player_setup(delta : float):
 	# prevent player going off screen
