@@ -2877,13 +2877,14 @@ motion_mirroring = Vector2(960, 0)
 texture = ExtResource("5_ybhqv")
 
 [node name="Player" parent="." instance=ExtResource("6_wy1hn")]
-position = Vector2(126, -15)
+position = Vector2(178, 3)
+dash_speed = 434
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(126, -15)
+position = Vector2(178, 3)
 process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
